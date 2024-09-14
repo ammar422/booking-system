@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\mainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -11,7 +12,7 @@ Route::group(
 
         Route::get('/', function () {
             return view('welcome');
-        });
+        })->name('home');
 
 
 
@@ -37,6 +38,9 @@ Route::group(
         })->name('offer_inquiry');
 
 
+
+        route::post('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
+        route::post('summery', [mainController::class, 'summery'])->name('summery');
 
 
         require __DIR__ . '/auth.php';

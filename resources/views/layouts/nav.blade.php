@@ -10,12 +10,12 @@
                                 <ul id="navigation">
                                     <li>
                                         <i class="fa fa-home" aria-hidden="true">
-                                            <a class="active" href="index.html">{{ __('header.home') }}</a>
+                                            <a class="active" href="{{ route('home') }}">{{ __('header.home') }}</a>
 
                                         </i>
                                     </li>
-                                    <li><a href="rooms.html">{{ __('header.newOffer') }}</a></li>
-                                    <li><a href="about.html"> {{ __('header.Inquiry') }}</a></li>
+                                    <li><a href="{{ route('offer_new') }}">{{ __('header.newOffer') }}</a></li>
+                                    <li><a href="{{ route('offer_inquiry') }}"> {{ __('header.Inquiry') }}</a></li>
                                 </ul>
                             </nav>
                         </div>
