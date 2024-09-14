@@ -39,8 +39,8 @@ Route::group(
 
 
 
-        route::post('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
-        route::post('summery', [mainController::class, 'summery'])->name('summery');
+        route::get('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
+        route::post('summary/{offer}', [mainController::class, 'createSummary'])->name('summary');
 
 
         require __DIR__ . '/auth.php';

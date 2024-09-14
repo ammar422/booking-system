@@ -21,6 +21,11 @@
             </div>
         </div>
     </div>
+    {{-- @foreach ($data as $item => $value)
+        <ul>
+            <li>{{ $item }} : {{ $value }}</li>
+        </ul>
+    @endforeach --}}
 
     <!-- Start Align Area -->
     <div class="whole-wrap">
@@ -42,22 +47,20 @@
                         <br>
                         <br>
 
-                        {{-- @foreach ($data as $item => $value)
-                            <ul>
-                                <li>{{ $item }} : {{ $value }}</li>
-                            </ul>
-                        @endforeach --}}
 
                         <ul class="inline-list">
-                            <li><strong>{{ __('body.offer_number') }}:</strong> 123456789</li>
-                            <li><strong>{{ __('body.Visa_type') }}:</strong> john.doe@example.com</li>
-                            <li><strong>{{ __('body.nationality') }}:</strong> 30</li>
-                            <li><strong>{{ __('body.visit_type') }}:</strong> Jane Smith</li>
-                            <li><strong>{{ __('body.Passport') }}:</strong> 213654</li>
-                            <li><strong>{{ __('body.visa_beneficiaries_num') }}:</strong> 25</li>
-                            <li><strong>{{ __('body.offer_expaire_date') }}:</strong> 25</li>
-                            <li><strong>{{ __('body.document_status') }}:</strong> 25</li>
-                            <li><strong>{{ __('body.Visa_No') }}:</strong> 25</li>
+                            <li><strong>{{ __('body.offer_number') }}:</strong> {{ $data['id'] }}</li>
+                            <li><strong>{{ __('body.Visa_type') }}:</strong> {{ $data['visa_type'] }}</li>
+                            <li><strong>{{ __('body.nationality') }}:</strong> {{ $data['nationality'] }}</li>
+                            <li><strong>{{ __('body.visit_type') }}:</strong> {{ $data['visit_type'] }}</li>
+                            <li><strong>{{ __('body.Passport') }}:</strong> {{ $data['passport_num'] }}</li>
+                            <li><strong>{{ __('body.visa_beneficiaries_num') }}:</strong>
+                                {{ $data['visa_beneficiaries_num'] }}</li>
+                            <li><strong>{{ __('body.offer_expaire_date') }}:</strong>
+                                {{ \Carbon\Carbon::today()->addDays(10) }}
+                            </li>
+                            <li><strong>{{ __('body.document_status') }}:</strong> {{ $data['document_status'] }}</li>
+                            <li><strong>{{ __('body.Visa_No') }}:</strong> {{ $data['visa_num'] }}</li>
                         </ul>
 
 
@@ -75,7 +78,7 @@
                             <tbody>
                                 <tr>
                                     <td>{{ __('body.invoice_total') }}</td>
-                                    <td>1990 SAR</td>
+                                    <td>{{ $data['total_price'] }}SAR</td>
                                 </tr>
                             </tbody>
                         </table>

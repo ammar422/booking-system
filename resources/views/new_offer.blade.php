@@ -41,7 +41,10 @@
 
                         <h4 class="mb-30">{{ __('body.Please_fill_the_following_data') }}</h4>
 
-                        <form method="POST" action="{{ route('getBeneficiariesData') }}">
+
+
+
+                        <form method="GET" action="{{ route('getBeneficiariesData') }}">
                             @csrf
                             <div class="form-group">
                                 <label>
@@ -49,7 +52,15 @@
                                         {{ __('body.Visa_No') }}
                                     </strong>
                                 </label>
-                                <input type="text" name="visa_num" class="form-control">
+                                <input type="text" name="visa_num" value="{{ old('visa_num') }}"
+                                    class="form-control @error('visa_num') is-invalid @enderror">
+                                @error('visa_num')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>
+                                            {{ $message }}
+                                        </strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>
@@ -57,8 +68,15 @@
                                         {{ __('body.Passport') }}
                                     </strong>
                                 </label>
-                                <input type="text" name='passport_num' class="form-control">
-
+                                <input type="text" name='passport_num' value="{{ old('passport_num') }}"
+                                    class="form-control @error('passport_num') is-invalid @enderror">
+                                @error('passport_num')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>
+                                            {{ $message }}
+                                        </strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>
@@ -66,8 +84,15 @@
                                         {{ __('body.Mobile_Number') }}
                                     </strong>
                                 </label>
-                                <input type="text" name="mobile_num" class="form-control">
-
+                                <input type="text" name="mobile_num" value="{{ old('mobile_num') }}"
+                                    class="form-control @error('mobile_num') is-invalid @enderror">
+                                @error('mobile_num')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>
+                                            {{ $message }}
+                                        </strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>

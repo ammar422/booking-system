@@ -28,6 +28,8 @@ return [
     'renewal_period' => "Renewal duration (in days)",
     'mail_box' => "mail box",
     'post_code' => "postal code",
+    'Single' => 'Single',
+    'Married' => 'Married',
     'address' => "Address",
     'confirm' => "Confirm",
     'summery' => "Summery and Invoice",
