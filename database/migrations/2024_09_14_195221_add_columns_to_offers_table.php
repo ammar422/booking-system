@@ -27,6 +27,7 @@ class AddColumnsToOffersTable extends Migration
             $table->string('post_code')->nullable();
             $table->integer('visa_beneficiaries_num')->max(10)->default(1);
             $table->enum('document_status', ['active', 'inactive'])->default('inactive');
+            $table->enum('guarantee_board_status', ['Acceptable', 'Rejected' , 'Pending'])->default('Pending');
             $table->text('address')->nullable(); // Assuming address may need more space than a string  
             $table->string('total_price')->nullable();
         });

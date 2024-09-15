@@ -38,10 +38,14 @@ Route::group(
         })->name('offer_inquiry');
 
 
-
+        // New Extend Visit Visa Insurance routes
         route::get('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
         route::post('summary/{offer}', [mainController::class, 'createSummary'])->name('summary');
 
+        // Retrieve Policy Or Quotation
+
+        route::post('offer_list', [mainController::class, 'getOfferList'])->name('offer_list');
+        route::get('document_data/{offer}' , [mainController::class , 'getDocumentData'])->name('document_data');
 
         require __DIR__ . '/auth.php';
     }

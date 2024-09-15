@@ -6,6 +6,7 @@ use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Http\Requests\OfferRequest;
 use App\Http\Requests\SummaryRequest;
+use Illuminate\Support\Facades\Validator;
 
 class mainController extends Controller
 {
@@ -32,5 +33,26 @@ class mainController extends Controller
         $offer->update($request->validated());
         $data = $offer->toArray();
         return view('summery', compact('data'));
+    }
+
+    public function getOfferList(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'passport_or_visa_num' => ['required', 'exists:offers,visa_num']
+            ]
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $offer = Offer::where('visa_num', $request->passport_or_visa_num)->first();
+        return view('offer_list', compact('offer'));
+    }
+
+
+    public function getDocumentData(Offer $offer)
+    {
+        return view('document_data', compact('offer'));
     }
 }

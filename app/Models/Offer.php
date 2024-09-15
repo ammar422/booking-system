@@ -28,5 +28,6 @@ class Offer extends Model
         'visa_beneficiaries_num',
         'document_status',
         'total_price',
+        'guarantee_board_status',
     ];
 }
