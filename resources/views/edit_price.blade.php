@@ -53,53 +53,7 @@
                                     <p class="app-notification__meta">2 min ago</p>
                                 </div>
                             </a></li>
-                        <li><a class="app-notification__item" href="javascript:;"><span
-                                    class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                            class="fa fa-circle fa-stack-2x text-danger"></i><i
-                                            class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                                <div>
-                                    <p class="app-notification__message">Mail server not working</p>
-                                    <p class="app-notification__meta">5 min ago</p>
-                                </div>
-                            </a></li>
-                        <li><a class="app-notification__item" href="javascript:;"><span
-                                    class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                            class="fa fa-circle fa-stack-2x text-success"></i><i
-                                            class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                                <div>
-                                    <p class="app-notification__message">Transaction complete</p>
-                                    <p class="app-notification__meta">2 days ago</p>
-                                </div>
-                            </a></li>
-                        <div class="app-notification__content">
-                            <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-primary"></i><i
-                                                class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                                    <div>
-                                        <p class="app-notification__message">Lisa sent you a mail</p>
-                                        <p class="app-notification__meta">2 min ago</p>
-                                    </div>
-                                </a></li>
-                            <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-danger"></i><i
-                                                class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                                    <div>
-                                        <p class="app-notification__message">Mail server not working</p>
-                                        <p class="app-notification__meta">5 min ago</p>
-                                    </div>
-                                </a></li>
-                            <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-success"></i><i
-                                                class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                                    <div>
-                                        <p class="app-notification__message">Transaction complete</p>
-                                        <p class="app-notification__meta">2 days ago</p>
-                                    </div>
-                                </a></li>
-                        </div>
+                    </div>
                     </div>
                     <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
                 </ul>
@@ -114,7 +68,6 @@
             </li>
         </ul>
     </header>
-
 
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -144,67 +97,58 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i>{{ __('body.show_all_Insurance_categories') }}</h1>
+                <h1><i class="fa-solid fa-sack-dollar"></i>
+                    <span>
 
+                        {{ __('body.edit_category_price') }}
+                    </span>
+                </h1>
+                {{-- {{ $price }} --}}
             </div>
+
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
                 <li class="breadcrumb-item"><a
                         href="{{ route('dashboard') }}">{{ __('body.show_all_Insurance_categories') }}</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('editPrice', $price->id) }}">{{ __('body.edit_category_price') }}</a></li>
             </ul>
         </div>
-        @if (Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>
-                    {{ Session::get('success') }}
-                </strong>
-                <button type="button" class="close" data-dismiss='alert' aria-label="Close">
-                    <span aria-hidden="true">&times; </span>
-                </button>
-            </div>
-        @endif
-        <div class="row">
-            <div class="col-md-12">
 
-                <div class="tile">
-                    <h3 class="tile-title">{{ __('body.show_all_Insurance_categories') }}</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>{{ __('body.category') }}</th>
-                                <th>{{ __('body.min_age') }}</th>
-                                <th>{{ __('body.max_age') }}</th>
-                                <th>{{ __('body.monthly_cost') }}</th>
-                                <th>{{ __('body.operations') }} </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (App\Models\Price::all() as $offer)
-                                <tr class="table-warning">
-                                    <td>{{ $offer->id }}</td>
-                                    <td>{{ $offer->category }}</td>
-                                    <td>{{ $offer->min_age }}</td>
-                                    <td>{{ $offer->max_age }}</td>
-                                    <td>{{ $offer->monthly_cost }}</td>
-                                    <td>
-                                        <a class="btn btn-outline-info btn-sm" role="button"
-                                            href="{{ route('editPrice', $offer->id) }}">
-                                            <i class="fa-solid fa-sack-dollar"></i>&nbsp;{{ __('body.edit_price') }}
-                                        </a>
-                                        <a class="btn btn-outline-danger btn-sm" data-toggle="modal"
-                                            href="#delete_file">
-                                            <i class="fas fa-trash"></i>&nbsp;{{ __('body.delete') }}
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">{{ __('body.edit_category_price') }}</h3>
+                <strong>{{ __('body.category') . ' ' . $price->category }}</strong>
+                <br>
+                <strong>{{ ' frome' . $price->min_age . ' years old to ' . $price->max_age . ' years old' }}</strong>
+                <br><br>
+                <div class="tile-body">
+
+                    <form class="row" method="POST" action="{{ route('updatePrice', $price->id) }}">
+                        @csrf
+                        <div class="form-group col-md-3">
+                            <label class="control-label">{{ __('body.current_price') }}</label>
+                            <input class="form-control" disabled type="text" value="{{ $price->monthly_cost }}">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">{{ __('body.new_price') }}</label>
+                            <input class="form-control" name="price" type="text" autofocus>
+                            <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                        </div>
+                        <div class="form-group col-md-4 align-self-end">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-fw fa-lg fa-check-circle"></i>{{ __('body.edit') }}</button>
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
+
+
+
+
+
+
     </main>
     <!-- Essential javascripts for application to work-->
     <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>

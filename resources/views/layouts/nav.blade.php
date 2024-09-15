@@ -40,14 +40,25 @@
                                     </a>
                                 @endif
                             </div>
+                            @guest
+                                <div class="book_btn d-none d-lg-block">
+                                    <a href="{{ route('login') }}" style="font-weight: bold;">{{ __('header.login') }}</a>
+                                </div>
 
-                            <div class="book_btn d-none d-lg-block">
-                                <a href="{{ route('login') }}" style="font-weight: bold;">{{ __('header.login') }}</a>
-                            </div>
-                            <div class="book_btn d-none d-lg-block">
+                                {{-- <div class="book_btn d-none d-lg-block">
                                 <a href="{{ route('register') }}"
-                                    style="font-weight: bold;">{{ __('header.register') }}</a>
-                            </div>
+                                style="font-weight: bold;">{{ __('header.register') }}</a>
+                            </div> --}}
+                            @endguest
+                            @auth
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <div class="book_btn d-none d-lg-block">
+                                        <button href="{{ route('logout') }}"
+                                            style="font-weight: bold;">{{ __('header.logout') }}</button>
+                                    </div>
+                                </form>
+                            @endauth
                         </div>
                     </div>
                     <div class="col-12">

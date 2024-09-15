@@ -1,47 +1,86 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Booking Login Admin</title>
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<body>
+    <section class="material-half-bg">
+        <div class="cover"></div>
+    </section>
+    <section class="login-content">
+        <div class="logo">
+            <h1>Booking Admin Dashboard</h1>
         </div>
+        <div class="login-box">
+            <form class="login-form" method="POST" action="{{ route('login') }}">
+                @csrf
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input class="form-control" name="email" type="email" placeholder="Email" autofocus>
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+                <div class="form-group">
+                    <div class="utility">
+                        <div class="animated-checkbox">
+                            <label>
+                                <input type="checkbox" id="remember_me" name="remember"><span class="label-text">{{ __('Remember me') }}</span>
+                            </label>
+                        </div>
+                        <p class="semibold-text mb-2"><a href="#" >Forgot Password ?</a></p>
+                    </div>
+                </div>
+                <div class="form-group btn-container">
+                    <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+                </div>
+            </form>
+            <form class="forget-form" action="index.html">
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+                <div class="form-group">
+                    <label class="control-label">EMAIL</label>
+                    <input class="form-control" type="text" placeholder="Email">
+                </div>
+                <div class="form-group btn-container">
+                    <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+                </div>
+                <div class="form-group mt-3">
+                    <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i
+                                class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+                </div>
+            </form>
         </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/admin-main.js') }}"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{{ asset('assets/js/plugins/pace.min.js') }}"></script>
+    <script type="text/javascript">
+        // Login Page Flipbox control
+        $('.login-content [data-toggle="flip"]').click(function() {
+            $('.login-box').toggleClass('flipped');
+            return false;
+        });
+    </script>
+</body>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

@@ -98,4 +98,45 @@ class mainController extends Controller
 
         return 0;
     }
+
+
+
+    public function getInsuranceDocuments()
+    {
+        $offers = Offer::all();
+        return view('all_Insurance_documents', compact('offers'));
+    }
+
+
+    public function editDocumentsStatus(offer $offer)
+    {
+        return view('edit_offer_status', compact('offer'));
+    }
+
+
+
+    public function updateDocumentsStatus(Offer $offer, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'guarantee_board_status' => ['required', 'in:Acceptable,Rejected,Pending']
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $new = $offer->update([
+            'guarantee_board_status' => $request->guarantee_board_status,
+        ]);
+        if ($offer->guarantee_board_status == 'Acceptable') {
+            $offer->update([
+                'document_status' => 'active',
+            ]);
+        }
+
+        if ($new) {
+            session()->flash('success', 'successfully edited');
+            return to_route('dashboard');
+        }
+    }
 }

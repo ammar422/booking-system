@@ -40,7 +40,7 @@
                             <h3 class="footer_title">
                                 {{ __('footer.Newsletter') }}
                             </h3>
-                            <form action="{{ route('register') }}" class="newsletter_form">
+                            <form action="" class="newsletter_form">
                                 <input type="text" placeholder="{{ __('footer.Enter_your_mail') }}">
                                 <button type="submit">{{ __('header.register') }}</button>
                             </form>

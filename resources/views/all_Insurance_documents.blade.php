@@ -133,7 +133,7 @@
             </li>
 
             <li>
-                <a class="app-menu__item" href="{{ route('all_Insurance_documents') }}">
+                <a class="app-menu__item" href="{{ route('dashboard') }}">
                     <i class="app-menu__icon fa fa-address-book" aria-hidden="true"></i>
                     <span class="app-menu__label">{{ __('body.show_all_Insurance_documents') }}</span></a>
             </li>
@@ -144,13 +144,13 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-dashboard"></i>{{ __('body.show_all_Insurance_categories') }}</h1>
+                <h1><i class="fa fa-dashboard"></i>{{ __('body.show_all_Insurance_documents') }}</h1>
 
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
                 <li class="breadcrumb-item"><a
-                        href="{{ route('dashboard') }}">{{ __('body.show_all_Insurance_categories') }}</a></li>
+                        href="{{ route('dashboard') }}">{{ __('body.show_all_Insurance_documents') }}</a></li>
             </ul>
         </div>
         @if (Session::has('success'))
@@ -163,34 +163,43 @@
                 </button>
             </div>
         @endif
+        {{-- {{ $offers }} --}}
         <div class="row">
             <div class="col-md-12">
 
                 <div class="tile">
-                    <h3 class="tile-title">{{ __('body.show_all_Insurance_categories') }}</h3>
+                    <h3 class="tile-title">{{ __('body.show_all_Insurance_documents') }}</h3>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>{{ __('body.category') }}</th>
-                                <th>{{ __('body.min_age') }}</th>
-                                <th>{{ __('body.max_age') }}</th>
-                                <th>{{ __('body.monthly_cost') }}</th>
+                                <th>{{ __('body.offer_number') }}</th>
+                                <th>{{ __('body.Visa_No') }}</th>
+                                <th>{{ __('body.Passport') }}</th>
+                                <th>{{ __('body.visa_expaire_date') }}</th>
+                                <th>{{ __('body.renewal_period') }}</th>
+                                <th>{{ __('body.document_status') }} </th>
+                                <th>{{ __('body.guarantee_board_status') }} </th>
+                                <th>{{ __('body.invoice_total') }} </th>
                                 <th>{{ __('body.operations') }} </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (App\Models\Price::all() as $offer)
+                            @foreach ($offers as $offer)
                                 <tr class="table-warning">
                                     <td>{{ $offer->id }}</td>
-                                    <td>{{ $offer->category }}</td>
-                                    <td>{{ $offer->min_age }}</td>
-                                    <td>{{ $offer->max_age }}</td>
-                                    <td>{{ $offer->monthly_cost }}</td>
+                                    <td>{{ $offer->visa_num }}</td>
+                                    <td>{{ $offer->passport_num }}</td>
+                                    <td>{{ $offer->visa_expaire_date }}</td>
+                                    <td>{{ $offer->renewal_period }}</td>
+                                    <td>{{ $offer->document_status }}</td>
+                                    <td>{{ $offer->guarantee_board_status }}</td>
+                                    <td>{{ $offer->total_price }}</td>
+
                                     <td>
                                         <a class="btn btn-outline-info btn-sm" role="button"
-                                            href="{{ route('editPrice', $offer->id) }}">
-                                            <i class="fa-solid fa-sack-dollar"></i>&nbsp;{{ __('body.edit_price') }}
+                                            href="{{ route('editDocumentsStatus', $offer->id) }}">
+                                            <i
+                                                class="fa-solid fa-sack-dollar"></i>&nbsp;{{ __('body.change_status') }}
                                         </a>
                                         <a class="btn btn-outline-danger btn-sm" data-toggle="modal"
                                             href="#delete_file">
