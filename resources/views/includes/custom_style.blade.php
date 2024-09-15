@@ -191,4 +191,87 @@
         display: block;
         margin-bottom: 5px;
     }
+
+
+    /*
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    } */
+
+    h1 {
+        color: #333;
+    }
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        max-width: 500px;
+        /* Set a maximum width for the modal */
+        width: 90%;
+        /* Allow modal to take up to 90% of the screen width */
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .close-button {
+        cursor: pointer;
+        font-size: 20px;
+        color: #999;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+
+    .close-button:hover {
+        color: #881edf;
+    }
+
+    button {
+        /* margin-top: 10px; */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #881edf;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+
+    }
+
+    .btn-alert {
+        margin-top: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #881edf;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+
+    }
+
+    button:hover {
+        background-color: #3a3f28;
+    }
 </style>

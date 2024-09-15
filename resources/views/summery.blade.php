@@ -54,6 +54,7 @@
                             <li><strong>{{ __('body.nationality') }}:</strong> {{ $data['nationality'] }}</li>
                             <li><strong>{{ __('body.visit_type') }}:</strong> {{ $data['visit_type'] }}</li>
                             <li><strong>{{ __('body.Passport') }}:</strong> {{ $data['passport_num'] }}</li>
+                            <li><strong>{{ __('body.age') }}:</strong>{{ $data['age'] }}</li>
                             <li><strong>{{ __('body.visa_beneficiaries_num') }}:</strong>
                                 {{ $data['visa_beneficiaries_num'] }}</li>
                             <li><strong>{{ __('body.offer_expaire_date') }}:</strong>

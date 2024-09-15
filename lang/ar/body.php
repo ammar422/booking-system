@@ -56,4 +56,6 @@ return [
     "document_data" => "بيانات الوثيقة و عرض السعر",
     "quotation_offer" => "تفاصيل الوثيقة",
     "quotation_offer_label" => "تم اصدار الوثيقه بنجاح",
+    "birth_date" => "تاريخ الميلاد",
+    "age" => "السن",
 ];

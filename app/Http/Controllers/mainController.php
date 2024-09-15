@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Http\Requests\OfferRequest;
 use App\Http\Requests\SummaryRequest;
+use App\Models\Price;
 use Illuminate\Support\Facades\Validator;
 
 class mainController extends Controller
@@ -30,8 +32,13 @@ class mainController extends Controller
 
     public function createSummary(Offer $offer, SummaryRequest $request)
     {
-        $offer->update($request->validated());
+        $data = $request->validated();
+        $age = $this->calculateAge($request->birth_date);
+        $total = $this->calculateCost($age, $request->renewal_period);
+        $data['total_price'] = $total;
+        $offer->update($data);
         $data = $offer->toArray();
+        $data['age'] = $age;
         return view('summery', compact('data'));
     }
 
@@ -54,5 +61,41 @@ class mainController extends Controller
     public function getDocumentData(Offer $offer)
     {
         return view('document_data', compact('offer'));
+    }
+
+
+    private function calculateAge($dateOfBirth)
+    {
+        // Create a Carbon instance from the date of birth  
+        $dob = Carbon::parse($dateOfBirth);
+
+        // Get today's date  
+        $today = Carbon::now();
+
+        // Calculate age in years  
+        $age = $today->diffInYears($dob);
+
+        return ceil(abs($age));
+    }
+
+    private function calculateCost($age, $period)
+    {
+
+        $period_in_months = ceil($period / 30);
+
+
+        $price = Price::where('min_age', '<=', $age)
+            ->where('max_age', '>=', $age)
+            ->first();
+
+
+        if ($price) {
+
+            $totalCost = $price->monthly_cost * $period_in_months;
+
+            return $totalCost;
+        }
+
+        return 0;
     }
 }

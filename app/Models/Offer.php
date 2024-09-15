@@ -29,5 +29,6 @@ class Offer extends Model
         'document_status',
         'total_price',
         'guarantee_board_status',
+        'birth_date',
     ];
 }

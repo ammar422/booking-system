@@ -17,6 +17,7 @@ class AddColumnsToOffersTable extends Migration
             $table->string('nationality')->nullable(); // Nullable if it can be empty  
             $table->string('border_number')->nullable();
             $table->date('visa_expaire_date')->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('visa_type')->default('Multi');
             $table->string('visit_type')->default('Traffic');
             $table->string('email')->nullable();

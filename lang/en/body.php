@@ -56,4 +56,6 @@ return [
     'document_data' => "Policy And Quotation Details",
     'quotation_offer' => "Quotation Details",
     'quotation_offer_label' => "The Quotation Was Issued Successfully",
+    'birth_date' => "Birth Date",
+    'age' => "Age",
 ];

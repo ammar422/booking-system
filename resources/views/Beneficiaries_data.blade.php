@@ -10,7 +10,6 @@
     <!-- bradcam_area_end -->
 
 
-
     <br>
     <br>
     <div class="row">
@@ -18,6 +17,18 @@
             <div class="section_title text-center mb-100">
                 <br>
                 <h3>{{ __('body.visa_beneficiaries_data') }}</h3>
+                <div id="modal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-button" id="closeModal">&times;</span>
+                        <strong id="modalMessage">
+                            If the data is entered incorrectly, the document will not be accepted. Do you
+                            want to
+                            continue?
+                        </strong>
+                        <button class="btn-alert" id="confirmButton">OK</button>
+                        <button class="btn-alert" id="cancelButton">Cancel</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -184,6 +195,20 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>
+                                        <strong>{{ __('body.birth_date') }}</strong>
+                                    </label>
+                                    <input type="date" value="{{ old('birth_date') }}" name='birth_date'
+                                        class="form-control @error('birth_date') is-invalid @enderror">
+                                    @error('birth_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>
                                         <strong>{{ __('body.renewal_period') }}</strong>
                                     </label>
                                     <select name="renewal_period" class="form-control">
@@ -233,7 +258,7 @@
                                         <strong>{{ __('body.address') }}</strong>
                                     </label>
                                     <textarea name="address" id="" cols="30" rows="10"
-                                        class="@error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                                        class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
@@ -252,9 +277,41 @@
         </div>
     </div>
     <!-- End Align Area -->
+    <script>
+        // script.js  
 
+        function showModal(message) {
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('modal').classList.remove('hidden');
+        }
 
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
 
+        window.onload = function() {
+            // Set a timeout before showing the modal  
 
+            setTimeout(function() {
+                let message =
+                    "إذا تم إدخال البيانات بشكل غير صحيح، فلن يتم قبول الوثيقة. هل تريد المتابعة؟,\nIf the data is entered incorrectly, the document will not be accepted. Do you want to continue?";
+
+                showModal(
+                    message
+                );
+            }, 500); // 2000 milliseconds = 2 seconds delay  
+        };
+
+        // Event listeners for buttons  
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('confirmButton').addEventListener('click', function() {
+            console.log('User acknowledged the alert.');
+            closeModal();
+        });
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            console.log('User canceled the alert.');
+            closeModal();
+        });
+    </script>
 
 @endsection
