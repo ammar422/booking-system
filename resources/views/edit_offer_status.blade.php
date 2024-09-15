@@ -38,6 +38,9 @@
             aria-label="Hide Sidebar"></a>
         <!-- Navbar Right Menu-->
         <ul class="app-nav">
+            <li class="dropdown"><a class="app-nav__item" href="{{ route('home') }}" aria-label="Open Profile Menu">
+                    <i class="fa-solid fa-globe"></i></a>
+            </li>
             <!--Notification Menu-->
             <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown"
                     aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>

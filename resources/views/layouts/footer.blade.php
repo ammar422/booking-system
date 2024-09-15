@@ -31,6 +31,7 @@
                             <li><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
                             <li><a href="{{ route('offer_new') }}">{{ __('header.newOffer') }}</a></li>
                             <li><a href="{{ route('offer_inquiry') }}">{{ __('header.Inquiry') }}</a></li>
+                            <li><a href="{{ route('dashboard') }}">admin</a></li>
                         </ul>
                     </div>
                 </div>
