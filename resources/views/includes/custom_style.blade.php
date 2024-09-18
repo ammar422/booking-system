@@ -274,4 +274,8 @@
     button:hover {
         background-color: #3a3f28;
     }
+
+    .nav-word{
+        color: #a02458
+    }
 </style>

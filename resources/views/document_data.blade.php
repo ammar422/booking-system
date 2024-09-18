@@ -3,11 +3,6 @@
 @section('content')
 
 
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg">
-        {{-- <h3>{{ __('body.new') }}</h3> --}}
-    </div>
-    <!-- bradcam_area_end -->
 
     <br>
     <br>

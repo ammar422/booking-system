@@ -5,17 +5,28 @@
             <div class="container-fluid p-0">
                 <div class="row align-items-center no-gutters">
                     <div class="col-xl-5 col-lg-6">
-                        <div class="main-menu  d-none d-lg-block">
+                        <div class="main-menu   d-lg-block">
                             <nav>
                                 <ul id="navigation">
                                     <li>
                                         <i class="fa fa-home" aria-hidden="true">
-                                            <a class="active" href="{{ route('home') }}">{{ __('header.home') }}</a>
+                                            <a class="active" href="{{ route('home') }}">
+                                                <span class="nav-word"> {{ __('header.home') }}</span>
+                                            </a>
 
                                         </i>
                                     </li>
-                                    <li><a href="{{ route('offer_new') }}">{{ __('header.newOffer') }}</a></li>
-                                    <li><a href="{{ route('offer_inquiry') }}"> {{ __('header.Inquiry') }}</a></li>
+                                    <li><a href="{{ route('offer_new') }}">
+                                            <span class="nav-word">
+                                                {{ __('header.newOffer') }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li><a href="{{ route('offer_inquiry') }}">
+                                            <span class="nav-word">
+                                                {{ __('header.Inquiry') }}
+                                            </span>
+                                        </a></li>
                                 </ul>
                             </nav>
                         </div>

@@ -13,7 +13,7 @@
              <div class="col-xl-6 col-md-6">
                  <div class="single_offers">
                      <div class="about_thumb">
-                         <img src="assets/img/offers/4.png" alt="">
+                         <img src="assets/img/offers/4.png" style="max-width: 50%;"alt="">
                      </div>
                      <h3> <strong> {{ __('body.new') }} </strong></h3>
 
@@ -27,7 +27,7 @@
              <div class="col-xl-6 col-md-6">
                  <div class="single_offers">
                      <div class="about_thumb">
-                         <img src="assets/img/offers/5.png" alt="">
+                         <img src="assets/img/offers/5.png" style="max-width: 50%;" alt="">
                      </div>
                      <h3><strong>{{ __('body.inquiry') }}</strong></h3>
 
