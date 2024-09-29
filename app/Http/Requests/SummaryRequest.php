@@ -23,11 +23,11 @@ class SummaryRequest extends FormRequest
     {
 
         return [
-            // 'visa_num' => 'required|string|max:255',
+            'visa_num' => 'required|string|max:255',
             // 'visa_type' => 'required|string|max:255',
             // 'visit_type' => 'required|string|max:255',
-            // 'passport_num' => 'required|string|max:20',
-            // 'mobile_num' => 'required|string|max:15',
+            'passport_num' => 'required|string|max:20',
+            'mobile_num' => 'required|string|max:15',
             'nationality' => 'required|string|max:100',
             'border_number' => 'required|string|max:100',
             'visa_expaire_date' => 'required|date|after:today',

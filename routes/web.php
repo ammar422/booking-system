@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Offer;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\PriceController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -37,13 +38,20 @@ Route::group(
         })->name('offer_inquiry');
 
 
-        // New Extend Visit Visa Insurance routes
-        route::get('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
-        route::post('summary/{offer}', [mainController::class, 'createSummary'])->name('summary');
+        // route::POST('get_data', [mainController::class, 'getdata'])->name('getdata');
 
+
+
+        // New Extend Visit Visa Insurance routes
+        // route::get('get-beneficiaries-data', [mainController::class, 'getBeneficiariesData'])->name('getBeneficiariesData');
+        route::post('summary', [mainController::class, 'createSummary'])->name('summary');
+        route::get('get_summery/{offer}', [mainController::class, 'getSummery'])->name('getSummery');
         // Retrieve Policy Or Quotation
 
-        route::post('offer_list', [mainController::class, 'getOfferList'])->name('offer_list');
+        route::post('offer_list', [mainController::class, 'OfferList'])->name('offer_list');
+        route::get('offer_list/{offer}', function (Offer $offer) {
+            return view('offer_list', compact("offer"));
+        })->name('get_offer_list');
         route::get('document_data/{offer}', [mainController::class, 'getDocumentData'])->name('document_data');
 
         require __DIR__ . '/auth.php';

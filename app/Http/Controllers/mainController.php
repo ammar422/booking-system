@@ -12,37 +12,36 @@ use Illuminate\Support\Facades\Validator;
 
 class mainController extends Controller
 {
-    public function getBeneficiariesData(OfferRequest $request)
+
+
+    public function getSummery(Offer $offer)
     {
+        $data = $offer;
+        return view('summmery_and_invoice', compact('data'));
+    }
 
-        $offer = Offer::firstOrCreate(
-            ['visa_num' => $request->visa_num],
-            [
-                'visa_num' => $request->visa_num,
-                'passport_num' => $request->passport_num,
-                'mobile_num' => $request->mobile_num,
-            ]
-        );
+    public function createSummary(SummaryRequest $request)
+    {
+        $offer = Offer::where("visa_num", $request->visa_num)->first();
+        if ($offer) {
+            return redirect()->route('getSummery', $offer);
+        } else {
 
-        $data = $offer->toArray();
-        return view('Beneficiaries_data', compact('data'));
+            $data = $request->validated();
+            $age = $this->calculateAge($request->birth_date);
+            $total = $this->calculateCost($age, $request->renewal_period);
+            $data['total_price'] = $total;
+            $offer = Offer::insertGetId($data);
+            $data = Offer::find($offer);
+            $data['age'] = $age;
+            return redirect()->route('getSummery', $offer);
+        }
     }
 
 
 
-    public function createSummary(Offer $offer, SummaryRequest $request)
-    {
-        $data = $request->validated();
-        $age = $this->calculateAge($request->birth_date);
-        $total = $this->calculateCost($age, $request->renewal_period);
-        $data['total_price'] = $total;
-        $offer->update($data);
-        $data = $offer->toArray();
-        $data['age'] = $age;
-        return view('summery', compact('data'));
-    }
 
-    public function getOfferList(Request $request)
+    public function OfferList(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
@@ -54,8 +53,15 @@ class mainController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $offer = Offer::where('visa_num', $request->passport_or_visa_num)->first();
-        return view('offer_list', compact('offer'));
+        return redirect()->route("get_offer_list",$offer->id);
+        // return view('offer_list', compact('offer'));
     }
+
+
+
+
+
+
 
 
     public function getDocumentData(Offer $offer)

@@ -1,100 +1,91 @@
 @extends('layouts.master')
-@section('title', __('header.title'))
 @section('content')
+    @include('includes.header')
 
 
- 
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="section_title text-center mb-100">
-                <br>
-                <h3>{{ __('body.query_lable') }}</h3>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-    <!-- Start Align Area -->
-    <div class="whole-wrap">
-        <div class="container box_1170">
-            <div class="section-top-border">
-                <div class="row">
-                    <div class="col-lg-8 col-md-8">
-
-                        <h2 class="mb-30">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            {{ __('body.Query') }}
-                        </h2>
-
-
-                        <form method="POST" action="{{ route('offer_list') }}">
-                            @csrf
-                            <div class="form-group">
-                                <label>
-                                    <strong>
-                                        {{ __('body.Policy_Or_Quotation_No') }}
-                                    </strong>
-                                </label>
-                                <input type="text" name="policy_or_quotation_num"
-                                    value="{{ old('policy_or_quotation_num') }}"
-                                    class="form-control @error('policy_or_quotation_num') is-invalid @enderror">
-                                @error('policy_or_quotation_num')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>
-                                            {{ $message }}
-                                        </strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <strong>
-                                        {{ __('body.Passport_Or_Visa_No') }}
-                                    </strong>
-                                </label>
-                                <input type="text" name='passport_or_visa_num' value="{{ old('passport_or_visa_num') }}"
-                                    class="form-control @error('passport_or_visa_num') is-invalid @enderror">
-                                @error('passport_or_visa_num')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>
-                                            {{ $message }}
-                                        </strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <strong>
-                                        {{ __('body.Mobile_number_policy') }}
-                                    </strong>
-                                </label>
-                                <input type="text" name="mobile_num" value="{{ old('mobile_num') }}"
-                                    class="form-control @error('mobile_num') is-invalid @enderror">
-                                @error('mobile_num')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>
-                                            {{ $message }}
-                                        </strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-
+    {{-- start multi-steps form  navbar --}}
+    <div class="formbold-main-wrapper">
+        <form method="POST" action="{{ route('offer_list') }}">
+            @csrf
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="visa_num" class="formbold-form-label">
+                        <strong>
+                            رقم الوثيقة او عرض السعر
+                        </strong>
+                    </label>
+                    <input type="text" name="visa_num" placeholder="رقم الوثيقة او عرض السعر" id="visa_num"
+                        value="{{ old('visa_num') }}" class="formbold-form-input @error('visa_num') is-invalid @enderror" />
+                    @error('visa_num')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>
+                                {{ $message }}
+                            </strong>
+                        </span>
+                    @enderror
                 </div>
+                <div>
+                    <label for="passport_num" class="formbold-form-label">
+                        <strong>
+                            رقم الجواز او رقم التأشيرة
+                        </strong>
+                    </label>
+                    <input type="text" name="passport_or_visa_num" placeholder=" رقم جواز السفر او رقم التأشيرة"
+                        id="passport_or_visa_num"
+                        class="formbold-form-input @error('passport_or_visa_num') is-invalid @enderror"
+                        value="{{ old('passport_or_visa_num') }}" />
+                    @error('passport_or_visa_num')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>
+                                {{ $message }}
+                            </strong>
+                        </span>
+                    @enderror
+                </div>
+                <div>
+                    <label for="passport_num" class="formbold-form-label">
+                        <strong>
+                            رقم الجوال المسجل على الوثيقة
+                        </strong>
+                    </label>
+                    <input type="text" name="mobile_num" placeholder="رقم الجوال المسجل على الوثيقة" id="mobile_num"
+                        class="formbold-form-input @error('mobile_num') is-invalid @enderror"
+                        value="{{ old('mobile_num') }}" />
+                    @error('mobile_num')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>
+                                {{ $message }}
+                            </strong>
+                        </span>
+                    @enderror
+                </div>
+
             </div>
-        </div>
+            <button class="btn-qu-submit" type="submit">
+                Search
+            </button>
+        </form>
     </div>
-    <!-- End Align Area -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
+
+    {{-- end multi-steps form  navbar --}}
 @endsection

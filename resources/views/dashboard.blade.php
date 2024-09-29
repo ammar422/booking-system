@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/main.css') }}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -111,8 +111,14 @@
             <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown"
                     aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
                 <ul class="dropdown-menu settings-menu dropdown-menu-right">
-                    <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i>
-                            Logout</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -210,12 +216,12 @@
         </div>
     </main>
     <!-- Essential javascripts for application to work-->
-    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/admin-main.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/admin-main.js') }}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="{{ asset('assets/js/plugins/pace.min.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/plugins/pace.min.js') }}"></script>
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">

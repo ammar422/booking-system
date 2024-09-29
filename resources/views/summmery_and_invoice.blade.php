@@ -7,17 +7,11 @@
     <div class="formbold-main-wrapper">
 
         <div class="formbold-form-wrapper">
-            <form action="{{ route("summary") }}" method="POST">
+            <form action="" method="GET">
                 @csrf
                 @include('includes.multi-step_nav')
 
-                @include('includes.step-one_new_offer')
-
-                @include('includes.step-two_benficiaries_data')
-
-                @include('includes.step_three_confirm')
-
-                @include('includes.main_button')
+                @include('includes.step-three_summery_and_invoice')
             </form>
         </div>
     </div>

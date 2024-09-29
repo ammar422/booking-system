@@ -1,346 +1,306 @@
-(function ($) {
-"use strict";
-// TOP Menu Sticky
-$(window).on('scroll', function () {
-	var scroll = $(window).scrollTop();
-	if (scroll < 400) {
-    $("#sticky-header").removeClass("sticky");
-    $('#back-top').fadeIn(500);
-	} else {
-    $("#sticky-header").addClass("sticky");
-    $('#back-top').fadeIn(500);
-	}
-});
+(function () {
 
+  var menu = document.querySelector('.menu__sidebar'),
+    mMenu = document.querySelector('.menu__mobile'),
+    dropDown = document.querySelector('.is-dropdown'),
+    mDropDown = document.querySelector('.menu__dropdown'),
+    dropDownM = document.querySelector('.is-dropdown-m'),
+    mDropDownM = document.querySelector('.menu__dropdown-m'),
+    menuClose = document.querySelector('.menu__close'),
+    menuCloseOverlay = document.querySelector('.mobile-menu-overlay');
+  mMenu.addEventListener('click', function () {
+    menu.classList.add('on');
+    menuCloseOverlay.classList.add('on');
+  });
+  menuClose.addEventListener('click', function () {
+    menu.classList.remove('on');
+    menuCloseOverlay.classList.remove('on');
+  });
 
-$(document).ready(function(){
-
-// mobile_menu
-var menu = $('ul#navigation');
-if(menu.length){
-	menu.slicknav({
-		prependTo: ".mobile_menu",
-		closedSymbol: '+',
-		openedSymbol:'-'
-	});
-};
-// blog-menu
-  // $('ul#blog-menu').slicknav({
-  //   prependTo: ".blog_menu"
-  // });
-
-// review-active
-$('.slider_active').owlCarousel({
-  loop:true,
-  margin:0,
-items:1,
-autoplay:true,
-navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
-  nav:true,
-dots:false,
-autoplayHoverPause: true,
-autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          nav:false,
-      },
-      767:{
-          items:1,
-          nav:false,
-      },
-      992:{
-          items:1
-      }
-  }
-});
-
-// about_active
-$('.about_active').owlCarousel({
-  loop:true,
-  margin:0,
-items:1,
-autoplay:true,
-navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
-  nav:true,
-dots:false,
-autoplayHoverPause: true,
-autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          nav:false,
-      },
-      767:{
-          items:1,
-          nav:false,
-      },
-      992:{
-          items:1
-      }
-  }
-});
-
-// review-active
-$('.testmonial_active').owlCarousel({
-  loop:true,
-  margin:0,
-items:1,
-autoplay:true,
-navText:['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-  nav:true,
-dots:false,
-autoplayHoverPause: true,
-autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          dots:false,
-          nav:false,
-      },
-      767:{
-          items:1,
-          dots:false,
-          nav:false,
-      },
-      992:{
-          items:1,
-          nav:false
-      },
-      1200:{
-          items:1,
-          nav:false
-      },
-      1500:{
-          items:1
-      }
-  }
-});
-
-// for filter
-  // init Isotope
-  var $grid = $('.grid').isotope({
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    masonry: {
-      // use outer width of grid-sizer for columnWidth
-      columnWidth: 1
+  window.addEventListener('click', function (event) {
+    if (event.target === menuCloseOverlay) {
+      menu.classList.remove('on');
+      menuCloseOverlay.classList.remove('on');
     }
   });
 
-  // filter items on button click
-  $('.portfolio-menu').on('click', 'button', function () {
-    var filterValue = $(this).attr('data-filter');
-    $grid.isotope({ filter: filterValue });
-  });
 
-  //for menu active class
-  $('.portfolio-menu button').on('click', function (event) {
-    $(this).siblings('.active').removeClass('active');
-    $(this).addClass('active');
-    event.preventDefault();
-	});
-  
-  // wow js
-  new WOW().init();
-
-  // counter 
-  $('.counter').counterUp({
-    delay: 10,
-    time: 10000
-  });
-
-/* magnificPopup img view */
-$('.popup-image').magnificPopup({
-	type: 'image',
-	gallery: {
-	  enabled: true
-	}
-});
-
-/* magnificPopup img view */
-$('.img-pop-up').magnificPopup({
-	type: 'image',
-	gallery: {
-	  enabled: true
-	}
-});
-
-/* magnificPopup video view */
-$('.popup-video').magnificPopup({
-	type: 'iframe'
-});
+})();
 
 
-  // scrollIt for smoth scroll
-  $.scrollIt({
-    upKey: 38,             // key code to navigate to the next section
-    downKey: 40,           // key code to navigate to the previous section
-    easing: 'linear',      // the easing function for animation
-    scrollTime: 600,       // how long (in ms) the animation takes
-    activeClass: 'active', // class given to the active nav element
-    onPageChange: null,    // function(pageIndex) that is called when page is changed
-    topOffset: 0           // offste (in px) for fixed top navigation
-  });
+// 
+// initMultiStepForm();
 
-  // scrollup bottom to top
-  $.scrollUp({
-    scrollName: 'scrollUp', // Element ID
-    topDistance: '4500', // Distance from top before showing element (px)
-    topSpeed: 300, // Speed back to top (ms)
-    animation: 'fade', // Fade, slide, none
-    animationInSpeed: 200, // Animation in speed (ms)
-    animationOutSpeed: 200, // Animation out speed (ms)
-    scrollText: '<i class="fa fa-angle-double-up"></i>', // Text for element
-    activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-  });
+// function initMultiStepForm() {
+//   const progressNumber = document.querySelectorAll(".step").length;
+//   const slidePage = document.querySelector(".slide-page");
+//   const submitBtn = document.querySelector(".submit");
+//   const progressText = document.querySelectorAll(".step p");
+//   const progressCheck = document.querySelectorAll(".step .check");
+//   const bullet = document.querySelectorAll(".step .bullet");
+//   const pages = document.querySelectorAll(".page");
+//   const nextButtons = document.querySelectorAll(".next");
+//   const prevButtons = document.querySelectorAll(".prev");
+//   const stepsNumber = pages.length;
 
+//   if (progressNumber !== stepsNumber) {
+//     console.warn(
+//       "Error, number of steps in progress bar do not match number of pages"
+//     );
+//   }
 
-  // blog-page
+//   document.documentElement.style.setProperty("--stepNumber", stepsNumber);
 
-  //brand-active
-$('.brand-active').owlCarousel({
-  loop:true,
-  margin:30,
-items:1,
-autoplay:true,
-  nav:false,
-dots:false,
-autoplayHoverPause: true,
-autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          nav:false
+//   let current = 1;
 
-      },
-      767:{
-          items:4
-      },
-      992:{
-          items:7
-      }
+//   for (let i = 0; i < nextButtons.length; i++) {
+//     nextButtons[i].addEventListener("click", function (event) {
+//       event.preventDefault();
+
+//       inputsValid = validateInputs(this);
+//       // inputsValid = true;
+
+//       if (inputsValid) {
+//         slidePage.style.marginLeft = `-${(100 / stepsNumber) * current
+//           }%`;
+//         bullet[current - 1].classList.add("active");
+//         progressCheck[current - 1].classList.add("active");
+//         progressText[current - 1].classList.add("active");
+//         current += 1;
+//       }
+//     });
+//   }
+
+//   for (let i = 0; i < prevButtons.length; i++) {
+//     prevButtons[i].addEventListener("click", function (event) {
+//       event.preventDefault();
+//       slidePage.style.marginLeft = `-${(100 / stepsNumber) * (current - 2)
+//         }%`;
+//       bullet[current - 2].classList.remove("active");
+//       progressCheck[current - 2].classList.remove("active");
+//       progressText[current - 2].classList.remove("active");
+//       current -= 1;
+//     });
+//   }
+//   submitBtn.addEventListener("click", function () {
+//     bullet[current - 1].classList.add("active");
+//     progressCheck[current - 1].classList.add("active");
+//     progressText[current - 1].classList.add("active");
+//     current += 1;
+//     setTimeout(function () {
+//       alert("Your Form Successfully Signed up");
+//       location.reload();
+//     }, 800);
+//   });
+
+//   function validateInputs(ths) {
+//     let inputsValid = true;
+
+//     const inputs =
+//       ths.parentElement.parentElement.querySelectorAll("input");
+//     for (let i = 0; i < inputs.length; i++) {
+//       const valid = inputs[i].checkValidity();
+//       if (!valid) {
+//         inputsValid = false;
+//         inputs[i].classList.add("invalid-input");
+//       } else {
+//         inputs[i].classList.remove("invalid-input");
+//       }
+//     }
+//     return inputsValid;
+//   }
+// }
+
+// // 
+// const stepMenuOne = document.querySelector('.formbold-step-menu1')
+// const stepMenuTwo = document.querySelector('.formbold-step-menu2')
+// const stepMenuThree = document.querySelector('.formbold-step-menu3')
+
+// const stepOne = document.querySelector('.formbold-form-step-1')
+// const stepTwo = document.querySelector('.formbold-form-step-2')
+// const stepThree = document.querySelector('.formbold-form-step-3')
+
+// const formSubmitBtn = document.querySelector('.formbold-btn')
+// const formBackBtn = document.querySelector('.formbold-back-btn')
+
+// formSubmitBtn.addEventListener("click", function (event) {
+//   event.preventDefault()
+//   if (stepMenuOne.className == 'formbold-step-menu1 active') {
+//     event.preventDefault()
+
+//     stepMenuOne.classList.remove('active')
+//     stepMenuTwo.classList.add('active')
+
+//     stepOne.classList.remove('active')
+//     stepTwo.classList.add('active')
+
+//     formBackBtn.classList.add('active')
+//     formBackBtn.addEventListener("click", function (event) {
+//       event.preventDefault()
+
+//       stepMenuOne.classList.add('active')
+//       stepMenuTwo.classList.remove('active')
+
+//       stepOne.classList.add('active')
+//       stepTwo.classList.remove('active')
+
+//       formBackBtn.classList.remove('active')
+
+//     })
+
+//   } else if (stepMenuTwo.className == 'formbold-step-menu2 active') {
+//     event.preventDefault()
+
+//     stepMenuTwo.classList.remove('active')
+//     stepMenuThree.classList.add('active')
+
+//     stepTwo.classList.remove('active')
+//     stepThree.classList.add('active')
+
+//     formBackBtn.classList.remove('active')
+//     formSubmitBtn.textContent = 'Submit'
+//   } else if (stepMenuThree.className == 'formbold-step-menu3 active') {
+//     document.querySelector('form').submit()
+//   }
+// })
+
+function initThreeStepForm() {
+  const progressNumber = document.querySelectorAll(".step").length;
+  const slidePage = document.querySelector(".slide-page");
+  const submitBtn = document.querySelector(".submit");
+  const progressText = document.querySelectorAll(".step p");
+  const progressCheck = document.querySelectorAll(".step .check");
+  const bullet = document.querySelectorAll(".step .bullet");
+  const pages = document.querySelectorAll(".page");
+  const nextButtons = document.querySelectorAll(".next");
+  const prevButtons = document.querySelectorAll(".prev");
+  const stepsNumber = 3; // Set to 3 steps
+
+  if (progressNumber !== stepsNumber) {
+    console.warn(
+      "Error, number of steps in progress bar do not match number of pages"
+    );
   }
-});
 
-// blog-dtails-page
+  document.documentElement.style.setProperty("--stepNumber", stepsNumber);
 
-  //project-active
-$('.project-active').owlCarousel({
-  loop:true,
-  margin:30,
-items:1,
-// autoplay:true,
-navText:['<i class="Flaticon flaticon-left-arrow"></i>','<i class="Flaticon flaticon-right-arrow"></i>'],
-nav:true,
-dots:false,
-// autoplayHoverPause: true,
-// autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          nav:false
+  let current = 1;
 
-      },
-      767:{
-          items:1,
-          nav:false
-      },
-      992:{
-          items:2,
-          nav:false
-      },
-      1200:{
-          items:1,
-      },
-      1501:{
-          items:2,
+  for (let i = 0; i < nextButtons.length; i++) {
+    nextButtons[i].addEventListener("click", function (event) {
+      event.preventDefault();
+
+      let inputsValid = validateInputs(this);
+      // inputsValid = true;
+
+      if (inputsValid) {
+        slidePage.style.marginLeft = `-${(100 / stepsNumber) * current}%`;
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
       }
+    });
   }
-});
 
-if (document.getElementById('default-select')) {
-  $('select').niceSelect();
+  for (let i = 0; i < prevButtons.length; i++) {
+    prevButtons[i].addEventListener("click", function (event) {
+      event.preventDefault();
+      slidePage.style.marginLeft = `-${(100 / stepsNumber) * (current - 2)}%`;
+      bullet[current - 2].classList.remove("active");
+      progressCheck[current - 2].classList.remove("active");
+      progressText[current - 2].classList.remove("active");
+      current -= 1;
+    });
+  }
+
+  submitBtn.addEventListener("click", function () {
+    bullet[current - 1].classList.add("active");
+    progressCheck[current - 1].classList.add("active");
+    progressText[current - 1].classList.add("active");
+    current += 1;
+    setTimeout(function () {
+      alert("Your Form Successfully Signed up");
+      location.reload();
+    }, 800);
+  });
+
+  function validateInputs(ths) {
+    let inputsValid = true;
+
+    const inputs =
+      ths.parentElement.parentElement.querySelectorAll("input");
+    for (let i = 0; i < inputs.length; i++) {
+      const valid = inputs[i].checkValidity();
+      if (!valid) {
+        inputsValid = false;
+        inputs[i].classList.add("invalid-input");
+      } else {
+        inputs[i].classList.remove("invalid-input");
+      }
+    }
+    return inputsValid;
+  }
 }
 
-  //about-pro-active
-$('.details_active').owlCarousel({
-  loop:true,
-  margin:0,
-items:1,
-// autoplay:true,
-navText:['<i class="ti-angle-left"></i>','<i class="ti-angle-right"></i>'],
-nav:true,
-dots:false,
-// autoplayHoverPause: true,
-// autoplaySpeed: 800,
-  responsive:{
-      0:{
-          items:1,
-          nav:false
+// Initialize the form
+initThreeStepForm();
 
-      },
-      767:{
-          items:1,
-          nav:false
-      },
-      992:{
-          items:1,
-          nav:false
-      },
-      1200:{
-          items:1,
-      }
+// Additional form navigation logic
+const stepMenuOne = document.querySelector('.formbold-step-menu1')
+const stepMenuTwo = document.querySelector('.formbold-step-menu2')
+const stepMenuThree = document.querySelector('.formbold-step-menu3')
+
+const stepOne = document.querySelector('.formbold-form-step-1')
+const stepTwo = document.querySelector('.formbold-form-step-2')
+const stepThree = document.querySelector('.formbold-form-step-3')
+
+const formSubmitBtn = document.querySelector('.formbold-btn')
+const formBackBtn = document.querySelector('.formbold-back-btn')
+
+formSubmitBtn.addEventListener("click", function (event) {
+  event.preventDefault()
+  if (stepMenuOne.className == 'formbold-step-menu1 active') {
+    stepMenuOne.classList.remove('active')
+    stepMenuTwo.classList.add('active')
+
+    stepOne.classList.remove('active')
+    stepTwo.classList.add('active')
+
+    formBackBtn.classList.add('active')
+    formSubmitBtn.textContent = 'Next Step'
+  } else if (stepMenuTwo.className == 'formbold-step-menu2 active') {
+    stepMenuTwo.classList.remove('active')
+    stepMenuThree.classList.add('active')
+
+    stepTwo.classList.remove('active')
+    stepThree.classList.add('active')
+
+    formSubmitBtn.textContent = 'Submit'
+  } else if (stepMenuThree.className == 'formbold-step-menu3 active') {
+    formSubmitBtn.textContent = 'Submit'
+    document.querySelector('form').submit()
   }
-});
+})
 
-});
+formBackBtn.addEventListener("click", function (event) {
+  event.preventDefault()
 
-// resitration_Form
-$(document).ready(function() {
-	$('.popup-with-form').magnificPopup({
-		type: 'inline',
-		preloader: false,
-		focus: '#name',
+  if (stepMenuTwo.className == 'formbold-step-menu2 active') {
+    stepMenuOne.classList.add('active')
+    stepMenuTwo.classList.remove('active')
 
-		// When elemened is focused, some mobile browsers in some cases zoom in
-		// It looks not nice, so we disable it:
-		callbacks: {
-			beforeOpen: function() {
-				if($(window).width() < 700) {
-					this.st.focus = false;
-				} else {
-					this.st.focus = '#name';
-				}
-			}
-		}
-	});
-});
+    stepOne.classList.add('active')
+    stepTwo.classList.remove('active')
 
+    formBackBtn.classList.remove('active')
+  } else if (stepMenuThree.className == 'formbold-step-menu3 active') {
+    stepMenuTwo.classList.add('active')
+    stepMenuThree.classList.remove('active')
 
+    stepTwo.classList.add('active')
+    stepThree.classList.remove('active')
 
-//------- Mailchimp js --------//  
-function mailChimp() {
-  $('#mc_embed_signup').find('form').ajaxChimp();
-}
-mailChimp();
-
-
-
-        // Search Toggle
-        $("#search_input_box").hide();
-        $("#search").on("click", function () {
-            $("#search_input_box").slideToggle();
-            $("#search_input").focus();
-        });
-        $("#close_search").on("click", function () {
-            $('#search_input_box').slideUp(500);
-        });
-        // Search Toggle
-        $("#search_input_box").hide();
-        $("#search_1").on("click", function () {
-            $("#search_input_box").slideToggle();
-            $("#search_input").focus();
-        });
-
-})(jQuery);	
+    formSubmitBtn.textContent = 'Submit'
+  }
+})
